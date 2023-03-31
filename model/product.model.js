@@ -22,8 +22,8 @@ const Product = sequelize.define("product", {
     stock: {
         type: DataTypes.INTEGER
     },
-    categoryName: {
-        type: DataTypes.STRING
+    categoryId: {
+        type: DataTypes.INTEGER
     },
     thumbnail: {
         type: DataTypes.STRING
@@ -31,7 +31,7 @@ const Product = sequelize.define("product", {
     images: {
         type: DataTypes.STRING(1500)
     },
-    sellerId: {
+    sellerDetailId: {
         type: DataTypes.INTEGER
     },
     keyword: {

@@ -1,6 +1,5 @@
 import express from "express";
 import { body } from "express-validator";
-
 import { productList, saveProduct, signin, signup, updateProduct ,} from "../controller/seller.controller.js";
 
 const router = express.Router();
@@ -8,7 +7,6 @@ const router = express.Router();
 
 router.post("/updateProduct", updateProduct)
 router.get("/productList", productList)
-
 
 router.post("/signup",body("sellerName","Enter name").notEmpty(),
 body("sellerEmail","Invalid Email").isEmail(),body("sellerContact").isNumeric(),

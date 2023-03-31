@@ -1,4 +1,4 @@
-import Customer from "../model/customer.model.js";
+import {Customer }from "../model/association.js";
 import { validationResult } from "express-validator";
 import bcrypt from "bcrypt";
 

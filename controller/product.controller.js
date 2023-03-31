@@ -1,4 +1,4 @@
-import Product from "../model/product.model.js";
+import {Product} from "../model/association.js";
 import { Op } from "sequelize";
 
 export const saveProduct = async (request, response, next) => {

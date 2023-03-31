@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import AdminRoute from "./routes/admin.route.js";
 import CustomerRoute from "./routes/customer.route.js";
 import SellerRoute from "./routes/seller.route.js";
+import CateroryRoute from "./routes/category.route.js";
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use("/admin",AdminRoute);
 app.use("/customer",CustomerRoute);
 app.use("/seller",SellerRoute);
+app.use("/category",CateroryRoute);
 
 
 app.listen(4000,()=>{
