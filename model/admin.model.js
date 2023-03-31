@@ -6,9 +6,6 @@ const Admin = sequelize.define("admin", {
     adminName: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-            isNumeric: false
-        }
     },
     adminEmail: {
         type: DataTypes.STRING,

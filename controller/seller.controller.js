@@ -1,8 +1,8 @@
-import Product from "../model/product.model.js"
+import {Product,SellerDetail} from "../model/association.js";
 import { validationResult } from "express-validator"
 import bcrypt from "bcryptjs";
 import Jwt from "jsonwebtoken";
-import SellerDetail from "../model/seller_details.model.js";
+// import SellerDetail from "../model/seller_details.model.js";
 
 
 export const productList = async (request, response, next) => {
@@ -36,9 +36,6 @@ export const updateProduct = (request, response, next) => {
     }).catch(err => {
         console.log(err);
     })
-
-
-
 }
 
 export const signin = (request, response, next) => {
@@ -79,7 +76,6 @@ export const signup = async (request, response, next) => {
             console.log(err); 
             return response.status(400).json({ error: "Internal server error", status: false });
         })
-
 }
 
 export const saveProduct =  async (request,response,next)=>{
