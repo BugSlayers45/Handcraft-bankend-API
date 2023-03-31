@@ -1,4 +1,4 @@
-import sequelize from "../db/dbConfig.js";
+import sequelize from "../db/dbconfig.js";
 import { DataTypes } from "sequelize";
 
 const Customer = sequelize.define("customer", {
