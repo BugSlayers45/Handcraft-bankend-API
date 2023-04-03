@@ -37,6 +37,8 @@ const Product = sequelize.define("product", {
     keyword: {
         type: DataTypes.STRING(2000)
     }
+},{
+    timestamps: false
 });
 
 sequelize.sync().then(result => {

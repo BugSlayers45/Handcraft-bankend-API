@@ -36,6 +36,8 @@ const OrderDetail = sequelize.define("order_detail", {
         defaultValue: "COD"
     },
 
+},{
+    timestamps: false
 });
 
 sequelize.sync()

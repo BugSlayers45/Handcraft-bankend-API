@@ -26,12 +26,14 @@ const Customer = sequelize.define("customer", {
             isNumeric: true
         }
     }
+},{
+    timestamps: false
 });
 sequelize.sync()
-    .then(result => {
-        console.log("Customers table created.....");
-    }).catch(err => {
-        console.log(err);
-    })
+.then(result => {
+    console.log("Customers table created.....");
+}).catch(err => {
+    console.log(err);
+})
 
 export default Customer;

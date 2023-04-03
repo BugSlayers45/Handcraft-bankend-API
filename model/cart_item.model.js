@@ -9,13 +9,15 @@ const CartItem = sequelize.define("cart_item", {
         primaryKey: true,
         autoIncrement: true
     }
+},{
+    timestamps: false
 });
 
 sequelize.sync().then(result => {
     console.log("Cart_items table Created....");
 })
-    .catch(err => {
-        console.log(err);
-    });
+.catch(err => {
+    console.log(err);
+});
 
 export default CartItem;

@@ -7,7 +7,17 @@ const Feedback = sequelize.define("feedback", {
     },
     rating: {
         type: DataTypes.FLOAT
+    },
+    customerId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    productId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
+},{
+    timestamps: false
 });
 sequelize.sync()
     .then(result => {

@@ -5,9 +5,10 @@ import sequelize from "../db/dbConfig.js";
 const Cart = sequelize.define("cart", {
     customerId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        unique: true
+        allowNull: false
     }
+},{
+    timestamps: false
 });
 
 sequelize.sync().then(result => {

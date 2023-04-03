@@ -21,7 +21,7 @@ const Admin = sequelize.define("admin", {
     }
 });
 
-sequelize.sync()
+sequelize.sync({ alter: false, force: false })
     .then(result => {
         console.log("Admin table Created....");
     })

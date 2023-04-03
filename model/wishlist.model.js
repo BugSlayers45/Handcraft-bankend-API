@@ -7,8 +7,9 @@ const Wishlist = sequelize.define("wishlist", {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
-
     }
+},{
+    timestamps: false
 });
 sequelize.sync()
     .then(result => {

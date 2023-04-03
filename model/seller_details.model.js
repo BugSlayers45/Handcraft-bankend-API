@@ -37,6 +37,8 @@ const SellerDetail = sequelize.define("sellerDetail", {
         allowNull: false,
         defaultValue: "Inactive"
     }
+},{
+    timestamps: false
 });
 
 sequelize.sync()
