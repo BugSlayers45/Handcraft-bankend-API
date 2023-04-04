@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../db/dbConfig.js";
+import sequelize from "../db/dbconfig.js";
 
 
 const CartItem = sequelize.define("cart_item", {
@@ -11,9 +11,10 @@ const CartItem = sequelize.define("cart_item", {
     }
 });
 
-sequelize.sync().then(result => {
-    console.log("Cart_items table Created....");
-})
+sequelize.sync()
+    .then(result => {
+        console.log("Cart_items table Created....");
+    })
     .catch(err => {
         console.log(err);
     });
