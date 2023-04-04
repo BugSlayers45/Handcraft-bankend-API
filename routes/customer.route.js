@@ -2,6 +2,7 @@ import express from "express";
 import { SignIn, SignUp } from "../controller/customer.controller.js";
 import { body } from "express-validator";
 import { getProductByCategory, getProductByPk, list, search, searchByKeyword } from "../controller/product.controller.js";
+import { addToCart, cartList, remove } from "../controller/cart.controller.js";
 
 
 
@@ -19,6 +20,8 @@ router.get("/getProducts/:categoryName", getProductByCategory);
 router.get("/getProductlist/:id", getProductByPk);
 router.post("/search/:letter", search);
 router.post("/searchKeyword/:keyword", searchByKeyword);
-// router.post("/add-to-cart", addToCart)
+router.post("/add-to-cart", addToCart);
+router.get("/cartList", cartList);
+router.post("/delete", remove)
 
 export default router;
