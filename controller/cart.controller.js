@@ -1,6 +1,6 @@
 import { validationResult } from "express-validator";
 import { Cart, CartItem, Product } from "../model/association.js";
-import sequelize from "../db/dbconfig.js";
+import sequelize from "../db/dbConfig.js";
 
 export const addToCart = async (request, response, next) => {
     const errors = validationResult(request);
