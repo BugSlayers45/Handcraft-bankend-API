@@ -9,69 +9,80 @@ import Product from "./product.model.js";
 import SellerDetail from "./seller_details.model.js";
 import Wishlist from "./wishlist.model.js";
 
-SellerDetail.hasMany(Product);
-Product.belongsTo(SellerDetail);
+// Product Category Connect
 
-
-Category.hasMany(Product);
-Product.belongsTo(Category);
-
-
-Customer.hasOne(Cart,{
-    foreignKey: "customerId"
-});
-Cart.belongsTo(Customer,{
-    foreignKey:"customerId",targetKey:"id"
-});
-
-Product.belongsToMany(Cart, { through: CartItem });
-Cart.belongsToMany(Product, { through: CartItem });
-
-
-Customer.hasMany(OrderDetail,{
-    foreignKey:"customerId"
-});
-OrderDetail.belongsTo(Customer,{
-    foreignKey:"customerId",targetKey:"id"
-});
-
-OrderDetail.belongsToMany(Product, { through: Order_Item });
-Product.belongsToMany(OrderDetail, { through: Order_Item });
-
-// Customer.belongsTo(Product, { through: Wishlist })
-// Product.belongsTo(Customer, { through: Wishlist });
-
-Customer.hasMany(Wishlist,{
-    foreignKey:'customerId'
+Category.hasMany(Product,{
+    foreignKey:"categoryId"
 })
 
+Product.belongsTo(Category,{
+    foreignKey:"categoryId",targetKey:"id"
+})
+
+// Product SellerDetails Connect
+
+SellerDetail.hasMany(Product,{
+    foreignKey:"sellerDetailId"
+})
+
+Product.belongsTo(SellerDetail,{
+    foreignKey:"sellerDetailId",targetKey:"id"
+})
+
+// Customer Product Cart CartItem Connect
+
+Customer.hasOne(Cart,{
+    foreignKey:"cartId"
+})
+
+Cart.belongsTo(Customer,{
+    foreignKey:"customerId",targetKey:"id"
+})
+
+Product.belongsToMany(Cart,{through:CartItem});
+Cart.belongsToMany(Product,{through:CartItem});
+
+// Product Customer OrderDetail and Order_items Connect
+
+Customer.hasMany(OrderDetail,{
+    foreignKey:"orderDetailId"
+})
+
+OrderDetail.belongsTo(Customer,{
+    foreignKey:"orderDetailId",targetKey:"id"
+})
+
+OrderDetail.belongsToMany(Product,{through:Order_Item});
+Product.belongsToMany(OrderDetail,{through:Order_Item});
+
+// Wishlist connect Customer and Product
+
+Customer.hasMany(Wishlist,{
+    foreignKey:"customerId"
+})
 Wishlist.belongsTo(Customer,{
     foreignKey:"customerId",targetKey:"id"
 })
-
 Product.hasMany(Wishlist,{
-    foreignKey:'productId'
+    foreignKey:"productId"
 })
-
 Wishlist.belongsTo(Product,{
     foreignKey:"productId",targetKey:"id"
 })
 
-// customer and product connect feedbach
+// Feedback Connect Customer and Product
+
 Customer.hasMany(Feedback,{
-    foreignKey: "customerId" 
+    foreignKey:"customerId"
 })
-
 Feedback.belongsTo(Customer,{
-    foreignKey: "customerId",targetKey:"id"
+    foreignKey:"customerId",targetKey:"id"
 })
-
 Product.hasMany(Feedback,{
     foreignKey:"productId"
 })
-Product.belongsTo(Feedback,{
-    foreignKey: "productId",targetKey:"id"
+Feedback.belongsTo(Product,{
+    foreignKey:"productId",targetKey:"id"
 })
 
-
-export { Category, Product, SellerDetail, Customer, Cart, CartItem, OrderDetail, Order_Item,Wishlist,Feedback }
+export {Category,Customer,Product,SellerDetail,OrderDetail,Order_Item,Cart,CartItem,Wishlist,Feedback}
