@@ -2,6 +2,7 @@ import {Product,SellerDetail} from "../model/association.js";
 import { validationResult } from "express-validator"
 import bcrypt from "bcryptjs";
 import Jwt from "jsonwebtoken";
+import { request } from "express";
 // import SellerDetail from "../model/seller_details.model.js";
 
 
@@ -76,27 +77,4 @@ export const signup = async (request, response, next) => {
             console.log(err); 
             return response.status(400).json({ error: "Internal server error", status: false });
         })
-}
-
-export const saveProduct =  async (request,response,next)=>{
-    try{
-        let productList = request.body.products;
-
-        for(let product of productList){
-            let {title,description,price,discount,rating,stock,categoryName,thumbnail,sellerId,keyword} = product
-
-            let imageArray = ""
-            for(let image of product.images){
-                imageArray = imageArray + image + " ";
-            }
-            await Product.create({
-                title:title, description: description, price: price,discount:discount, rating:rating, stock: stock, categoryName: categoryName, thumbnail:thumbnail, sellerId: sellerId, images: imageArray, keyword: keyword
-            })
-        }
-        return response.status(200).json({message: "product inserted....", status:true});
-
-    }catch(err){
-        console.log(err);
-        return response.status(500).json({error:"Internal server error",status:false});
-    }
 }
