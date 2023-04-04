@@ -1,4 +1,4 @@
-import {Product,SellerDetail} from "../model/association.js";
+import { Product, SellerDetail } from "../model/association.js";
 import { validationResult } from "express-validator"
 import bcrypt from "bcryptjs";
 import Jwt from "jsonwebtoken";
@@ -51,7 +51,7 @@ export const signin = (request, response, next) => {
             if (status) {
                 let payload = { subject: SellerDetail.selleEmail };
                 let token = Jwt.sign(payload, 'qwertyuio;lkjhgfwertj')
-                return response.status(200).json({ message: "SignIn successfull",token:token, status: true });
+                return response.status(200).json({ message: "SignIn successfull", token: token, status: true });
             }
             return response.status(400).json({ message: "Bad request", status: false });
         }
@@ -62,41 +62,19 @@ export const signin = (request, response, next) => {
 }
 
 export const signup = async (request, response, next) => {
-    const error =  await validationResult(request);
+    const error = await validationResult(request);
     if (!error.isEmpty())
         return response.status(400).json({ error: "Bad request", message: error.array() });
     let saltkey = await bcrypt.genSalt(10);
     let encrypPassword = await bcrypt.hash(request.body.sellerPassword, saltkey);
     request.body.sellerPassword = encrypPassword;
 
-    let SellerDetails =  SellerDetail.create(request.body)
+    let SellerDetails = SellerDetail.create(request.body)
         .then(result => {
             return response.status(200).json({ seller: SellerDetails, status: true });
         }).catch(err => {
-            console.log(err); 
+            console.log(err);
             return response.status(400).json({ error: "Internal server error", status: false });
         })
 }
 
-export const saveProduct =  async (request,response,next)=>{
-    try{
-        let productList = request.body.products;
-
-        for(let product of productList){
-            let {title,description,price,discount,rating,stock,categoryName,thumbnail,sellerId,keyword} = product
-
-            let imageArray = ""
-            for(let image of product.images){
-                imageArray = imageArray + image + " ";
-            }
-            await Product.create({
-                title:title, description: description, price: price,discount:discount, rating:rating, stock: stock, categoryName: categoryName, thumbnail:thumbnail, sellerId: sellerId, images: imageArray, keyword: keyword
-            })
-        }
-        return response.status(200).json({message: "product inserted....", status:true});
-
-    }catch(err){
-        console.log(err);
-        return response.status(500).json({error:"Internal server error",status:false});
-    }
-}

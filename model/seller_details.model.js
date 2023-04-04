@@ -6,7 +6,7 @@ const SellerDetail = sequelize.define("sellerDetail", {
     sellerName: {
         type: DataTypes.STRING,
         allowNull: false,
-     },
+    },
     sellerEmail: {
         type: DataTypes.STRING,
         allowNull: false,

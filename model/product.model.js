@@ -1,4 +1,4 @@
-import sequelize from "../db/dbConfig.js"
+import sequelize from "../db/dbConfig.js";
 import { DataTypes } from "sequelize"
 const Product = sequelize.define("product", {
     title: {

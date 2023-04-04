@@ -1,4 +1,4 @@
-import {Product} from "../model/association.js";
+import { Product } from "../model/association.js";
 import { Op } from "sequelize";
 
 export const saveProduct = async (request, response, next) => {
@@ -6,14 +6,14 @@ export const saveProduct = async (request, response, next) => {
         let productList = request.body.products;
 
         for (let product of productList) {
-            let { title, description, price, discount, rating, stock, categoryName, thumbnail, sellerId, keyword } = product
+            let { title, description, price, discountPercentage, rating, stock, categoryId, thumbnail, sellerId, keyword } = product
 
             let imageArray = ""
             for (let image of product.images) {
                 imageArray = imageArray + image + " ";
             }
             await Product.create({
-                title: title, description: description, price: price, discount: discount, rating: rating, stock: stock, categoryName: categoryName, thumbnail: thumbnail, sellerId: sellerId, images: imageArray, keyword: keyword
+                title: title, description: description, price: price, discount: discountPercentage, rating: rating, stock: stock, categoryId: categoryId, thumbnail: thumbnail, sellerId: sellerId, images: imageArray, keyword: keyword
             })
         }
         return response.status(200).json({ message: "product inserted....", status: true });
@@ -23,6 +23,7 @@ export const saveProduct = async (request, response, next) => {
         return response.status(500).json({ error: "Internal server error", status: false });
     }
 }
+
 
 export const list = async (request, response, next) => {
     try {

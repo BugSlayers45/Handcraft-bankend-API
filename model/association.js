@@ -19,18 +19,19 @@ Product.belongsTo(Category);
 Customer.hasOne(Cart);
 Cart.belongsTo(Customer);
 
-Product.belongsToMany(Cart,{through:CartItem});
-Cart.belongsToMany(Product,{through:CartItem});
+Product.belongsToMany(Cart, { through: CartItem });
+Cart.belongsToMany(Product, { through: CartItem });
 
 
 Customer.hasMany(OrderDetail);
 OrderDetail.belongsTo(Customer);
 
-OrderDetail.belongsToMany(Product,{through:Order_Item});
-Product.belongsToMany(OrderDetail,{through:Order_Item});
+OrderDetail.belongsToMany(Product, { through: Order_Item });
+Product.belongsToMany(OrderDetail, { through: Order_Item });
+
 
 // Customer.belongsTo(Product,{through: Wishlist})
 // Product.belongsTo(Customer,{through: Wishlist});
 
 
-export {Category,Product,SellerDetail,Customer,Cart,CartItem,OrderDetail,Order_Item}
+export { Category, Product, SellerDetail, Customer, Cart, CartItem, OrderDetail, Order_Item }

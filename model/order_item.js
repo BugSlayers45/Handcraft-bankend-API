@@ -7,6 +7,7 @@ const Order_Item = sequelize.define("order_item", {
         allowNull: false,
 
     }
+
 });
 sequelize.sync()
     .then(result => {

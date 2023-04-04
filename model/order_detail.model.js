@@ -12,10 +12,8 @@ const OrderDetail = sequelize.define("order_detail", {
     },
     contactPerson: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            isNumeric: false
-        }
+        allowNull: false
+
     },
     contactNumber: {
         type: DataTypes.STRING,
@@ -35,6 +33,9 @@ const OrderDetail = sequelize.define("order_detail", {
         allowNull: false,
         defaultValue: "COD"
     },
+    customerId: {
+        type: DataTypes.INTEGER
+    }
 
 });
 
