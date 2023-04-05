@@ -1,9 +1,8 @@
-import {Product,SellerDetail} from "../model/association.js";
+import { Product, SellerDetail } from "../model/association.js";
 import { validationResult } from "express-validator"
 import bcrypt from "bcryptjs";
 import Jwt from "jsonwebtoken";
-import { request } from "express";
-// import SellerDetail from "../model/seller_details.model.js";
+
 
 
 export const productList = async (request, response, next) => {
@@ -52,7 +51,7 @@ export const signin = (request, response, next) => {
             if (status) {
                 let payload = { subject: SellerDetail.selleEmail };
                 let token = Jwt.sign(payload, 'qwertyuio;lkjhgfwertj')
-                return response.status(200).json({ message: "SignIn successfull",token:token, status: true });
+                return response.status(200).json({ message: "SignIn successfull", token: token, status: true });
             }
             return response.status(400).json({ message: "Bad request", status: false });
         }
@@ -63,18 +62,20 @@ export const signin = (request, response, next) => {
 }
 
 export const signup = async (request, response, next) => {
-    const error =  await validationResult(request);
+    const error = await validationResult(request);
     if (!error.isEmpty())
         return response.status(400).json({ error: "Bad request", message: error.array() });
     let saltkey = await bcrypt.genSalt(10);
     let encrypPassword = await bcrypt.hash(request.body.sellerPassword, saltkey);
     request.body.sellerPassword = encrypPassword;
 
-    let SellerDetails =  SellerDetail.create(request.body)
+    let SellerDetails = SellerDetail.create(request.body)
         .then(result => {
             return response.status(200).json({ seller: SellerDetails, status: true });
         }).catch(err => {
-            console.log(err); 
+            console.log(err);
             return response.status(400).json({ error: "Internal server error", status: false });
         })
+
 }
+

@@ -2,11 +2,11 @@ import { DataTypes } from "sequelize";
 import sequelize from "../db/dbConfig.js";
 
 
-const SellerDetail = sequelize.define("sellerDetail", {
+const SellerDetail = sequelize.define("seller", {
     sellerName: {
         type: DataTypes.STRING,
         allowNull: false,
-     },
+    },
     sellerEmail: {
         type: DataTypes.STRING,
         allowNull: false,

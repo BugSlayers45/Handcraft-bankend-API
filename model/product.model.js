@@ -1,4 +1,4 @@
-import sequelize from "../db/dbConfig.js"
+import sequelize from "../db/dbConfig.js";
 import { DataTypes } from "sequelize"
 const Product = sequelize.define("product", {
     title: {
@@ -12,7 +12,7 @@ const Product = sequelize.define("product", {
     price: {
         type: DataTypes.INTEGER
     },
-    discount: {
+    discountPercentage: {
 
         type: DataTypes.FLOAT
     },
@@ -31,7 +31,7 @@ const Product = sequelize.define("product", {
     images: {
         type: DataTypes.STRING(1500)
     },
-    sellerDetailId: {
+    sellerId: {
         type: DataTypes.INTEGER
     },
     keyword: {

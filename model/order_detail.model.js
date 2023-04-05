@@ -1,7 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/dbConfig.js";
+import { validationResult } from "express-validator";
 
-const OrderDetail = sequelize.define("order_detail", {
+const OrderDetail = sequelize.define("orderdetail", {
     date: {
         type: DataTypes.STRING,
         defaultValue: new Date().toString().substring(4, 15).replaceAll(' ', " ")
@@ -12,10 +13,8 @@ const OrderDetail = sequelize.define("order_detail", {
     },
     contactPerson: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            isNumeric: false
-        }
+        allowNull: false
+
     },
     contactNumber: {
         type: DataTypes.STRING,
@@ -35,6 +34,9 @@ const OrderDetail = sequelize.define("order_detail", {
         allowNull: false,
         defaultValue: "COD"
     },
+    customerId: {
+        type: DataTypes.INTEGER
+    }
 
 });
 

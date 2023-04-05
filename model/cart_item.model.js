@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../db/dbconfig.js";
+import sequelize from "../db/dbConfig.js";
+import { validationResult } from "express-validator";
 
 
 const CartItem = sequelize.define("cart_item", {

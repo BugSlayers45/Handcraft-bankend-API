@@ -4,7 +4,7 @@ import { DataTypes } from "sequelize";
 const Category = sequelize.define("category", {
     categoryName: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull: false
     }
 })
 sequelize.sync()
