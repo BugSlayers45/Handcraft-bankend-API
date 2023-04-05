@@ -1,7 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/dbConfig.js";
+import { validationResult } from "express-validator";
 
-const OrderDetail = sequelize.define("order_detail", {
+const OrderDetail = sequelize.define("orderdetail", {
     date: {
         type: DataTypes.STRING,
         defaultValue: new Date().toString().substring(4, 15).replaceAll(' ', " ")

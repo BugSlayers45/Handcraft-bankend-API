@@ -2,7 +2,7 @@ import { Product, SellerDetail } from "../model/association.js";
 import { validationResult } from "express-validator"
 import bcrypt from "bcryptjs";
 import Jwt from "jsonwebtoken";
-// import SellerDetail from "../model/seller_details.model.js";
+
 
 
 export const productList = async (request, response, next) => {
@@ -76,5 +76,6 @@ export const signup = async (request, response, next) => {
             console.log(err);
             return response.status(400).json({ error: "Internal server error", status: false });
         })
+
 }
 
