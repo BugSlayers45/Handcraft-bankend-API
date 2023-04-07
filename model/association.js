@@ -8,7 +8,7 @@ import Order_Item from "./order_item.js";
 import Product from "./product.model.js";
 import SellerDetail from "./seller_details.model.js";
 import Wishlist from "./wishlist.model.js";
-
+import WishlistItem from "./WishlistItem.model.js";
 // Product Category Connect
 
 Category.hasMany(Product, {
@@ -59,18 +59,17 @@ Product.belongsToMany(OrderDetail, { through: Order_Item });
 
 // Wishlist connect Customer and Product
 
-Customer.hasMany(Wishlist, {
+Customer.hasOne(Wishlist, {
     foreignKey: "customerId"
-})
+});
 Wishlist.belongsTo(Customer, {
     foreignKey: "customerId", targetKey: "id"
-})
-Product.hasMany(Wishlist, {
-    foreignKey: "productId"
-})
-Wishlist.belongsTo(Product, {
-    foreignKey: "productId", targetKey: "id"
-})
+});
+// Product.belongsToMany(Wishlist, {
+//     through: WishListItem, foreignKey: "orderdetailId", targetKey: "id"
+// });
+// Wishlist.belongsToMany(Product, { through: WishlistItem });
+
 
 // Feedback Connect Customer and Product
 
@@ -87,5 +86,13 @@ Feedback.belongsTo(Product, {
     foreignKey: "productId", targetKey: "id"
 })
 
-export { Category, Customer, Product, SellerDetail, OrderDetail, Order_Item, Cart, CartItem, Wishlist, Feedback }
+
+Product.belongsToMany(Wishlist, {
+        through: WishlistItem, foreignKey: "productId", targetKey: "id"
+    });
+
+Wishlist.belongsToMany(Product, { through: WishlistItem });
+    
+
+export { Category, Customer, Product, SellerDetail, OrderDetail, Order_Item, Cart, CartItem, Wishlist,WishlistItem, Feedback }
 
