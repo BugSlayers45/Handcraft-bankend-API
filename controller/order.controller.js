@@ -1,5 +1,5 @@
 import sequelize from "../db/dbConfig.js";
-import { Order_Item } from "../model/association.js";
+import { Order_Item, Product } from "../model/association.js";
 import OrderDetail from "../model/order_detail.model.js";
 
 
@@ -30,3 +30,20 @@ export const saveOrder = async (request, response, next) => {
         return response.status(500).json({ error: "Internal Server Error", status: false });
     }
 }
+
+//id
+export const viewOrderdetail = (request, response, next) => {
+    OrderDetail.findAll({
+        where: {
+            id: request.body.id
+        },
+        include: { model: Product }
+    }).then(result => {
+        return response.status(200).json({ "Order details :-----": result, status: true })
+    })
+        .catch(err => {
+            console.log(err);
+            return response.status(500).json({ error: "Internal server error", status: false });
+        })
+}
+

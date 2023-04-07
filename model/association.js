@@ -40,7 +40,7 @@ Cart.belongsTo(Customer, {
 })
 
 Product.belongsToMany(Cart, {
-    through: CartItem, foreignKey: "orderdetailId", targetKey: "id"
+    through: CartItem
 });
 Cart.belongsToMany(Product, { through: CartItem });
 
@@ -59,7 +59,7 @@ Product.belongsToMany(OrderDetail, { through: Order_Item });
 
 // Wishlist connect Customer and Product
 
-Customer.hasMany(Wishlist, {
+Customer.hasOne(Wishlist, {
     foreignKey: "customerId"
 })
 Wishlist.belongsTo(Customer, {
