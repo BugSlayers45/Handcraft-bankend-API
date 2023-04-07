@@ -62,6 +62,7 @@ export const cartList = (request, response, next) => {
         include: { model: Product }
     })
         .then(result => {
+            console.log(result);
             return response.status(200).json({ "cart_list": result, status: true });
         }).catch(err => {
             console.log(err);

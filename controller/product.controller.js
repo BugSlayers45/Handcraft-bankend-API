@@ -100,6 +100,8 @@ export const searchByKeyword = (request, response, next) => {
         return response.status(500).json({ error: "Internal server error", status: false });
     })
 }
+
+
 export const removeProduct = async (request, response, next) => {
     try {
         let product = await Product.findOne({
@@ -115,3 +117,5 @@ export const removeProduct = async (request, response, next) => {
         return response.status(500).json({ message: "Internal server error", status: false });
     }
 }
+
+
