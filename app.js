@@ -8,7 +8,8 @@ import CategoryRoute from "./routes/category.route.js";
 import ProductRouter from "./routes/product.route.js";
 import CartRouter from "./routes/cart.route.js";
 import OrderRouter from "./routes/order.route.js";
-
+import FeedBackRouter from "./routes/feedback.route.js";
+import WishlistRouter from "./routes/wishlist.route.js";
 const app = express();
 
 app.use(bodyParser.json());
@@ -21,8 +22,8 @@ app.use("/category", CategoryRoute);
 app.use("/product", ProductRouter);
 app.use("/cart", CartRouter);
 app.use("/order", OrderRouter);
-
-
+app.use("/feedback",FeedBackRouter);
+app.use("/wishlist",WishlistRouter);
 app.listen(4000, () => {
     console.log("server started ....4000");
 })
